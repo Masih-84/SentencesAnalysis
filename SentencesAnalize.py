@@ -20,11 +20,13 @@ def analyze_text(text):
         result[char_type].append(char)
     return result
 
+# Checking the type of languages in the input text
 def detect_languages(text):
     langs = detect_langs(text)
     return [(lang.lang, lang.prob) for lang in langs]
 
-
+def get_language_name(lang_code):
+    return langid.langs.get(lang_code, "Unknown")
 
 # We ask the user to enter the desired text:
 input_text = input("Please, Enter your text: ")
@@ -43,4 +45,5 @@ for char_type, chars in analysis_result.items():
 
 print("language recognition: ")
 for lang, prob in language_probs:
-    print(f" language : {lang} (possibility: {prob})")
+    lang_name = get_language_name(lang)
+    print(f" language : {lang_name} (possibility: {prob})")
