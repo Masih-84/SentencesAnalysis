@@ -39,5 +39,5 @@ for char_type, chars in analysis_result.items():
         print(", ".join(chars))
         print()
 
-print("anguage recognition: ")
+print("language recognition: ")
 print(f" language : {language} (possibility: {confidence})")
