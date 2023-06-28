@@ -24,6 +24,7 @@ def detect_language(text):
         "fr": "French",
         "de": "German",
         "es": "Spanish",
+        "fa": "Farsi",
         # Add other languages here
     }
 
