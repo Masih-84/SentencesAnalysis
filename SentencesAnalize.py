@@ -1,4 +1,5 @@
 import langid
+from langdetect import detect_langs
 import unicodedata
 
 def get_character_type(character):
@@ -19,9 +20,10 @@ def analyze_text(text):
         result[char_type].append(char)
     return result
 
-def detect_language(text):
-    lang, confidence = langid.classify(text)
-    return lang, confidence
+def detect_languages(text):
+    langs = detect_langs(text)
+    return [(lang.lang, lang.prob) for lang in langs]
+
 
 
 # We ask the user to enter the desired text:
@@ -29,7 +31,7 @@ input_text = input("Please, Enter your text: ")
 
 # Analyze the text and get the result
 analysis_result = analyze_text(input_text)
-language, confidence = detect_language(input_text)
+language_probs = detect_languages(input_text)
 
 # Show result
 print("Analyze the text and get the result: ")
@@ -40,4 +42,5 @@ for char_type, chars in analysis_result.items():
         print()
 
 print("language recognition: ")
-print(f" language : {language} (possibility: {confidence})")
+for lang, prob in language_probs:
+    print(f" language : {lang} (possibility: {prob})")
