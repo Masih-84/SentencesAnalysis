@@ -1,3 +1,4 @@
+import langid
 import unicodedata
 
 def get_character_type(character):
