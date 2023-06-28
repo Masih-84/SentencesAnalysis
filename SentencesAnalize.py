@@ -20,21 +20,16 @@ def analyze_text(text):
     return result
 
 def detect_language(text):
-    language_data = {
-        "en": "English",
-        "fr": "French",
-        "de": "German",
-        "es": "Spanish",
-        "fa": "Farsi",
-        # Add other languages here
-    }
+    lang, confidence = langid.classify(text)
+    return lang, confidence
+
 
 # We ask the user to enter the desired text:
 input_text = input("Please, Enter your text: ")
 
 # Analyze the text and get the result
 analysis_result = analyze_text(input_text)
-language_result = detect_language(input_text)
+language, confidence = detect_language(input_text)
 
 # Show result
 print("Analyze the text and get the result: ")
@@ -45,9 +40,4 @@ for char_type, chars in analysis_result.items():
         print()
 
 print("anguage recognition: ")
-for lang, words in language_result.items():
-    if words:
-        print(f"language '{lang}':")
-        for word in words:
-            print(f"word '{word}'")
-        print()
+print(f" language : {language} (possibility: {confidence})")
