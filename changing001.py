@@ -24,7 +24,7 @@ def detect_language(text):
         "fr": "French",
         "de": "German",
         "es": "Spanish",
-        # اضافه کردن زبان‌های مختلف در اینجا
+        # Add other languages here
     }
 
     language_results = {}
@@ -48,29 +48,29 @@ def check_word(word):
             return f"Invalid character '{char}' found in word '{word}'"
     return None
 
-# متن ورودی را دریافت می‌کنیم
-input_text = input("لطفاً متن را وارد کنید: ")
+# We ask the user to enter the desired text:
+input_text = input("Please, Enter your text: ")
 
-# تجزیه و تحلیل متن و دریافت نتیجه
+# Analyze the text and get the result
 analysis_result = analyze_text(input_text)
 language_result = detect_language(input_text)
 
-# نمایش نتیجه
-print("تجزیه و تحلیل حروف:")
+# Show result
+print("Analyze the text and get the result: ")
 for char_type, chars in analysis_result.items():
     if chars:
-        print(f"نوع '{char_type}':")
+        print(f"Type '{char_type}':")
         print(", ".join(chars))
         print()
 
-print("تشخیص زبان:")
+print("anguage recognition: ")
 for lang, words in language_result.items():
     if words:
-        print(f"زبان '{lang}':")
+        print(f"Language '{lang}':")
         for word in words:
             error = check_word(word)
             if error:
-                print(f"کلمه '{word}': خطا - {error}")
+                print(f"Word '{word}': error - {error}")
             else:
-                print(f"کلمه '{word}': معتبر")
+                print(f"Word '{word}': valid")
         print()
